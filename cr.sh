@@ -4,7 +4,7 @@
 set -e
 
 # remove old executable
-rm -f ./testing
+make clean
 
 # compile
 make
