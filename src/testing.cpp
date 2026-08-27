@@ -22,5 +22,6 @@ void debug(std::string message) {
 int main() {
     std::string toPrint = "Hello World!";
     log(toPrint);
+    debug("debugFlag is true, so this message is shown.");
     return 0;
 }
