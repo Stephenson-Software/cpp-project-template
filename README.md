@@ -21,10 +21,16 @@ This removes the `testing` executable.
 
 ## Running
 ```sh
+make run
+```
+
+This builds the executable if it is missing or out of date, then runs it. The executable name comes from the `TARGET` variable in the `Makefile`, so renaming it there is enough to rename it everywhere `make` and `cr.sh` touch it. The built program can also be started directly:
+
+```sh
 ./testing
 ```
 
-Expected output:
+Expected program output (with `make run`, the `Makefile` prints its own progress lines around it):
 ```
 [LOG] Hello World!
 [DEBUG] debugFlag is true, so this message is shown.
@@ -41,9 +47,9 @@ Expected output:
 | Path | Purpose |
 |------|---------|
 | `src/` | C++ sources. `src/testing.cpp` is the sample program. Any `.cpp` file added here is compiled. |
-| `Makefile` | Build rules. The `testing` target globs `src/*.cpp`, and the `clean` target removes the executable. |
+| `Makefile` | Build rules. The `testing` target globs `src/*.cpp`, the `run` target runs the executable, and the `clean` target removes it. |
 | `testing` | The compiled executable, tracked in git. `make` rewrites it and `make clean` removes it. |
-| `cr.sh` | Compile-and-run helper. |
+| `cr.sh` | Compile-and-run helper: `make clean`, `make`, `make run`. |
 | `.devcontainer/` | VS Code dev container definition. |
 | `.vscode/` | Editor settings. |
 | `.gitignore` | Currently empty, so nothing is excluded from version control. |

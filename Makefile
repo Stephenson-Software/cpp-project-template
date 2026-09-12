@@ -25,4 +25,13 @@ clean:
 
 	@echo "Finished removing $(TARGET)"
 
-.PHONY: all clean
+# run the executable, building it first if it is missing or out of date, so nothing outside this file needs its name
+run: $(TARGET)
+	@echo "---"
+	@echo "Running $(TARGET)"
+
+	./$(TARGET)
+
+	@echo "Finished running $(TARGET)"
+
+.PHONY: all clean run

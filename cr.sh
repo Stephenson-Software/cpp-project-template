@@ -9,5 +9,5 @@ make clean
 # compile
 make
 
-# run
-./testing
+# run, through the Makefile so the executable name is only ever read from TARGET
+make run
