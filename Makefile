@@ -4,12 +4,15 @@ TARGET = testing
 # every .cpp file under src/ is compiled, so a new source is picked up without editing this file
 SOURCES = $(wildcard src/*.cpp)
 
+# every header under src/ is a prerequisite too, so editing one triggers a rebuild instead of running a stale executable
+HEADERS = $(wildcard src/*.h src/*.hpp)
+
 # warnings are on by default, so a project started from this template does not hide them
 CXXFLAGS = -Wall -Wextra
 
 all: $(TARGET)
 
-$(TARGET): $(SOURCES)
+$(TARGET): $(SOURCES) $(HEADERS)
 	@echo "---"
 	@echo "Compiling $(SOURCES)"
 
