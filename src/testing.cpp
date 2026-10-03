@@ -1,6 +1,9 @@
 #include <string>
 #include <iostream>
 
+/**
+ * Whether debug() prints its messages. Set to false to silence them.
+ */
 bool debugFlag = true;
 
 /**
@@ -11,7 +14,7 @@ void log(std::string message) {
 }
 
 /**
- * Log a debug message to the console.
+ * Log a debug message to the console, only if debugFlag is true.
  */
 void debug(std::string message) {
     if (debugFlag) {
