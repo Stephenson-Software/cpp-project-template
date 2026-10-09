@@ -12,6 +12,12 @@ make
 
 This compiles every `.cpp` file under `src/` into a single executable named `testing` in the repository root, with `-Wall -Wextra` enabled. Every `.h` and `.hpp` file under `src/` is a prerequisite of the executable, so editing a header triggers a rebuild on the next `make`.
 
+The compiler is make's `CXX` variable, which is `g++` unless a `CXX` environment variable names another. A different compiler can also be chosen on the command line without editing the `Makefile`:
+
+```sh
+make CXX=clang++
+```
+
 ## Cleaning
 ```sh
 make clean
