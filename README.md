@@ -24,6 +24,8 @@ make's conventional `CPPFLAGS` (preprocessor flags such as `-Iinclude`), `LDFLAG
 make LDLIBS=-lpthread
 ```
 
+Changing a variable does not by itself make the executable out of date, so if `testing` has already been built, run `make clean` first (or `make -B`) for the new compiler or flags to take effect.
+
 ## Cleaning
 ```sh
 make clean
