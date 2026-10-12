@@ -11,13 +11,16 @@ HEADERS = $(wildcard src/*.h src/*.hpp)
 # warnings are on by default, so a project started from this template does not hide them
 CXXFLAGS = -Wall -Wextra
 
+# CPPFLAGS (e.g. -Iinclude), LDFLAGS (e.g. -L/opt/lib), and LDLIBS (e.g. -lpthread) are make's conventional variables and are left unset here
+# they are passed through in make's built-in order, libraries after the sources, so e.g. make LDLIBS=-lpthread links a library without editing this file
+
 all: $(TARGET)
 
 $(TARGET): $(SOURCES) $(HEADERS)
 	@echo "---"
 	@echo "Compiling $(SOURCES)"
 
-	$(CXX) $(CXXFLAGS) $(SOURCES) -o $(TARGET)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) $(SOURCES) $(LDLIBS) -o $(TARGET)
 
 	@echo "Finished compiling $(SOURCES)"
 

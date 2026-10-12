@@ -18,6 +18,14 @@ The compiler is make's `CXX` variable, which is `g++` unless a `CXX` environment
 make CXX=clang++
 ```
 
+make's conventional `CPPFLAGS` (preprocessor flags such as `-Iinclude`), `LDFLAGS` (linker flags such as `-L/opt/lib`), and `LDLIBS` (libraries such as `-lpthread`) are passed to the compiler too, so an include directory or a library can be added the same way:
+
+```sh
+make LDLIBS=-lpthread
+```
+
+Changing a variable does not by itself make the executable out of date, so if `testing` has already been built, run `make clean` first (or `make -B`) for the new compiler or flags to take effect.
+
 ## Cleaning
 ```sh
 make clean
