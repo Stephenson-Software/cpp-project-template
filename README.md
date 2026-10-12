@@ -18,6 +18,12 @@ The compiler is make's `CXX` variable, which is `g++` unless a `CXX` environment
 make CXX=clang++
 ```
 
+make's conventional `CPPFLAGS` (preprocessor flags such as `-Iinclude`), `LDFLAGS` (linker flags such as `-L/opt/lib`), and `LDLIBS` (libraries such as `-lpthread`) are passed to the compiler too, so an include directory or a library can be added the same way:
+
+```sh
+make LDLIBS=-lpthread
+```
+
 ## Cleaning
 ```sh
 make clean
