@@ -24,6 +24,14 @@ make's conventional `CPPFLAGS` (preprocessor flags such as `-Iinclude`), `LDFLAG
 make LDLIBS=-lpthread
 ```
 
+Compiler flags such as `-g` or `-O2` go in `CXXFLAGS`. The `Makefile` assigns it `-Wall -Wextra`, so a value given on the command line replaces those warning flags rather than adding to them; repeat them to keep the warnings:
+
+```sh
+make CXXFLAGS="-Wall -Wextra -g"
+```
+
+Unlike `CXX`, a `CXXFLAGS` environment variable is not read, because the `Makefile`'s own assignment takes precedence over the environment.
+
 Changing a variable does not by itself make the executable out of date, so if `testing` has already been built, run `make clean` first (or `make -B`) for the new compiler or flags to take effect.
 
 ## Cleaning
