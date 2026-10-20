@@ -32,7 +32,7 @@ make CXXFLAGS="-Wall -Wextra -g"
 
 Unlike `CXX`, a `CXXFLAGS` environment variable is not read, because the `Makefile`'s own assignment takes precedence over the environment.
 
-Changing a variable does not by itself make the executable out of date, so if `testing` has already been built, run `make clean` first (or `make -B`) for the new compiler or flags to take effect.
+Editing the `Makefile` itself, for example its `CXXFLAGS` assignment, makes the executable out of date, so the next `make` rebuilds it with the new settings. A variable given on the command line or in the environment does not, so if `testing` has already been built, run `make clean` first (or `make -B`) for the new compiler or flags to take effect.
 
 ## Cleaning
 ```sh
@@ -69,7 +69,7 @@ Expected program output (with `make run`, the `Makefile` prints its own progress
 | Path | Purpose |
 |------|---------|
 | `src/` | C++ sources. `src/testing.cpp` is the sample program. Any `.cpp` file added here is compiled, and any `.h` or `.hpp` file added here triggers a rebuild when it changes. Subdirectories are not searched. |
-| `Makefile` | Build rules. The `testing` target globs `src/*.cpp` and depends on `src/*.h` and `src/*.hpp`, the `run` target runs the executable, and the `clean` target removes it. |
+| `Makefile` | Build rules. The `testing` target globs `src/*.cpp` and depends on `src/*.h`, `src/*.hpp`, and the `Makefile` itself, the `run` target runs the executable, and the `clean` target removes it. |
 | `testing` | The compiled executable, tracked in git. `make` rewrites it and `make clean` removes it. |
 | `cr.sh` | Compile-and-run helper: `make clean`, `make`, `make run`. |
 | `.devcontainer/` | VS Code dev container definition. |

@@ -16,7 +16,8 @@ CXXFLAGS = -Wall -Wextra
 
 all: $(TARGET)
 
-$(TARGET): $(SOURCES) $(HEADERS)
+# this file is a prerequisite as well, so editing a setting in it (e.g. CXXFLAGS) rebuilds with the new setting instead of keeping an executable built the old way
+$(TARGET): $(SOURCES) $(HEADERS) Makefile
 	@echo "---"
 	@echo "Compiling $(SOURCES)"
 
