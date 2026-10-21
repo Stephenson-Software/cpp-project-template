@@ -65,13 +65,15 @@ Expected program output (with `make run`, the `Makefile` prints its own progress
 ./cr.sh
 ```
 
+It stops at the first step that fails and exits with that step's non-zero status, so a broken build is never followed by a run. Because the old executable is removed first, a failed build leaves no `testing` executable behind.
+
 ## Repository layout
 | Path | Purpose |
 |------|---------|
 | `src/` | C++ sources. `src/testing.cpp` is the sample program. Any `.cpp` file added here is compiled, and any `.h` or `.hpp` file added here triggers a rebuild when it changes. Subdirectories are not searched. |
 | `Makefile` | Build rules. The `testing` target globs `src/*.cpp` and depends on `src/*.h`, `src/*.hpp`, and the `Makefile` itself, the `run` target runs the executable, and the `clean` target removes it. |
 | `testing` | The compiled executable, tracked in git. `make` rewrites it and `make clean` removes it. |
-| `cr.sh` | Compile-and-run helper: `make clean`, `make`, `make run`. |
+| `cr.sh` | Compile-and-run helper: `make clean`, `make`, `make run`, stopping at the first one that fails. |
 | `.devcontainer/` | VS Code dev container definition. |
 | `.vscode/` | Editor settings. |
 | `.gitignore` | Currently empty, so nothing is excluded from version control. |
