@@ -1,10 +1,11 @@
 # the executable this build produces, named in one place so the build and clean steps cannot disagree
 TARGET = testing
 
-# every .cpp file under src/ is compiled, so a new source is picked up without editing this file
+# every .cpp file directly in src/ is compiled, so a new source is picked up without editing this file
+# subdirectories of src/ are not searched, so a source placed in one is not compiled
 SOURCES = $(wildcard src/*.cpp)
 
-# every header under src/ is a prerequisite too, so editing one triggers a rebuild instead of running a stale executable
+# every .h and .hpp file directly in src/ is a prerequisite too, so editing one triggers a rebuild instead of running a stale executable
 HEADERS = $(wildcard src/*.h src/*.hpp)
 
 # the compiler is make's built-in CXX, which is g++ unless overridden by the environment or the command line (e.g. make CXX=clang++), so it can be swapped without editing this file
