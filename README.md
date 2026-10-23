@@ -19,7 +19,7 @@ make clean
 make
 ```
 
-The repository tracks a prebuilt `testing` that was built from an older `src/testing.cpp` and is not marked executable. Git writes it after the sources, so `make` alone reports `Nothing to be done for 'all'` and `make run` fails with `Permission denied`. `./cr.sh` is not affected, because it runs `make clean` first.
+The repository tracks a prebuilt `testing` that was built from an older `src/testing.cpp` and is not marked executable. Git usually writes it after the sources, so `make` alone reports `Nothing to be done for 'all'` and `make run` fails with `Permission denied`. `./cr.sh` is not affected, because it runs `make clean` first.
 
 The compiler is make's `CXX` variable, which is `g++` unless a `CXX` environment variable names another. A different compiler can also be chosen on the command line without editing the `Makefile`:
 
