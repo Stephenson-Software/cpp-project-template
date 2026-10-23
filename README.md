@@ -12,6 +12,15 @@ make
 
 This compiles every `.cpp` file directly in `src/` into a single executable named `testing` in the repository root, with `-Wall -Wextra` enabled. Every `.h` and `.hpp` file directly in `src/` is a prerequisite of the executable, so editing a header triggers a rebuild on the next `make`. Subdirectories of `src/` are not searched, so a source file placed in one is not compiled and a header placed in one does not trigger a rebuild.
 
+In a fresh clone, run `make clean` before the first build:
+
+```sh
+make clean
+make
+```
+
+The repository tracks a prebuilt `testing` that was built from an older `src/testing.cpp` and is not marked executable. Git writes it after the sources, so `make` alone reports `Nothing to be done for 'all'` and `make run` fails with `Permission denied`. `./cr.sh` is not affected, because it runs `make clean` first.
+
 The compiler is make's `CXX` variable, which is `g++` unless a `CXX` environment variable names another. A different compiler can also be chosen on the command line without editing the `Makefile`:
 
 ```sh
@@ -72,7 +81,7 @@ It stops at the first step that fails and exits with that step's non-zero status
 |------|---------|
 | `src/` | C++ sources. `src/testing.cpp` is the sample program. Any `.cpp` file added here is compiled, and any `.h` or `.hpp` file added here triggers a rebuild when it changes. Subdirectories are not searched. |
 | `Makefile` | Build rules. The `testing` target globs `src/*.cpp` and depends on `src/*.h`, `src/*.hpp`, and the `Makefile` itself, the `run` target runs the executable, and the `clean` target removes it. |
-| `testing` | The compiled executable, tracked in git. `make` rewrites it and `make clean` removes it. |
+| `testing` | The compiled executable, tracked in git. The committed copy is out of date and not executable, so a fresh clone needs `make clean` before its first build. `make` rewrites it and `make clean` removes it. |
 | `cr.sh` | Compile-and-run helper: `make clean`, `make`, `make run`, stopping at the first one that fails. |
 | `.devcontainer/` | VS Code dev container definition. |
 | `.vscode/` | Editor settings. |
