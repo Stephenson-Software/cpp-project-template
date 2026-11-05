@@ -5,6 +5,20 @@ This is a template for a C++ project.
 - `g++`
 - `make`
 
+## Starting a project from this template
+Create a repository with GitHub's **Use this template** button, or clone this one, then make these changes in the new project:
+
+1. Set `TARGET` in the `Makefile` to the name of the new executable (for example `TARGET = myapp`). `make`, `make run`, `make clean`, and `cr.sh` all follow it.
+2. Remove the prebuilt executable, which is otherwise left behind in git because nothing builds or cleans it any more:
+
+   ```sh
+   git rm testing
+   ```
+
+3. Add the new executable's name to `.gitignore`. The file is empty, so otherwise the build output shows up as untracked and is easy to commit by accident.
+4. Replace `src/testing.cpp` with the project's own code. Any `.cpp` file directly in `src/` is compiled, so the file can be renamed without editing the `Makefile`.
+5. Replace this `README.md`, and replace `LICENSE` if different terms are wanted (see [License](#license)).
+
 ## Building
 ```sh
 make
