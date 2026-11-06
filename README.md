@@ -26,6 +26,8 @@ make
 
 This compiles every `.cpp` file directly in `src/` into a single executable named `testing` in the repository root, with `-Wall -Wextra` enabled. Every `.h` and `.hpp` file directly in `src/` is a prerequisite of the executable, so editing a header triggers a rebuild on the next `make`. Subdirectories of `src/` are not searched, so a source file placed in one is not compiled and a header placed in one does not trigger a rebuild.
 
+Removing or renaming a file in `src/` does not trigger a rebuild either, because `make` only compares the timestamps of the files that still exist. Unless one of them has also changed, `make` reports `Nothing to be done for 'all'` and the old executable, still containing the removed code, stays in place. Run `make clean` first (or `make -B`) after removing or renaming a file.
+
 In a fresh clone, run `make clean` before the first build:
 
 ```sh
