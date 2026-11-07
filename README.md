@@ -9,10 +9,10 @@ This is a template for a C++ project.
 Create a repository with GitHub's **Use this template** button, or clone this one, then make these changes in the new project:
 
 1. Set `TARGET` in the `Makefile` to the name of the new executable (for example `TARGET = myapp`). `make`, `make run`, `make clean`, and `cr.sh` all follow it.
-2. Remove the prebuilt executable, which is otherwise left behind in git because nothing builds or cleans it any more:
+2. Remove the prebuilt executable, which is otherwise left behind in git because nothing builds or cleans it any more. The `-f` is needed if the project has already been built, because the build rewrites the tracked file and git refuses to remove a modified file without it:
 
    ```sh
-   git rm testing
+   git rm -f testing
    ```
 
 3. Add the new executable's name to `.gitignore`. The file is empty, so otherwise the build output shows up as untracked and is easy to commit by accident.
